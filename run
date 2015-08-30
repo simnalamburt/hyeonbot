@@ -1,19 +1,29 @@
 #!/usr/bin/env ruby
 require 'cinch'
 
-bot = Cinch::Bot.new do
-  configure do |c|
-    c.nick = '김젼봇'
-    c.server = 'moe.uriirc.org'
-    c.port = 16667
-    c.channels = ['#hyeon']
-  end
-
-  on :message, 'IP' do |m|
-    m.reply `ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1 }'`
-  end
-end
-
 loop do
-  bot.start
+  begin
+    bot = Cinch::Bot.new do
+      configure do |c|
+        c.nick = '김젼봇'
+        c.server = 'moe.uriirc.org'
+        c.port = 16667
+        c.channels = ['#hyeon']
+      end
+
+      on :message, 'IP' do |m|
+        m.reply `ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1 }'`
+      end
+    end
+
+    bot.start
+  rescue Exception => msg
+    puts ''
+    puts ''
+    puts '오직 죽음만이 나를 멈출 수 있다'
+    puts ''
+    puts msg
+    puts ''
+    puts ''
+  end
 end
