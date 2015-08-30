@@ -9,6 +9,7 @@ loop do
         c.server = 'irc.ozinger.org'
         c.port = 6697
         c.channels = ['#test']
+        c.max_reconnect_delay = 10
       end
 
       on :message, 'IP' do |m|
