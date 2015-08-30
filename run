@@ -1,5 +1,19 @@
 #!/usr/bin/env ruby
+require 'cinch'
+
+bot = Cinch::Bot.new do
+  configure do |c|
+    c.nick = '김젼봇'
+    c.server = 'irc.ozinger.org'
+    c.port = 6697
+    c.channels = ['#test']
+  end
+
+  on :message, 'IP' do |m|
+    m.reply `ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1 }'`
+  end
+end
+
 loop do
-  puts `ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1 }'`
-  sleep 1
+  bot.start
 end
