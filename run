@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+loop do
+  puts `ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1 }'`
+  sleep 1
+end
