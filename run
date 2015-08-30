@@ -9,6 +9,7 @@ loop do
         c.server = 'moe.uriirc.org'
         c.port = 16667
         c.channels = ['#hyeon']
+        c.max_reconnect_delay = 10
       end
 
       on :message, 'IP' do |m|
