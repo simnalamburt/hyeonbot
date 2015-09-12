@@ -13,7 +13,7 @@ loop do
       end
 
       on :message, 'IP' do |m|
-        m.reply `ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1 }'`
+        m.reply `ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1 }'`
       end
     end
 
