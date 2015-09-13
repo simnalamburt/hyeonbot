@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 require 'cinch'
+require 'nokogiri'
+require 'open-uri'
 
 def action
   bot = Cinch::Bot.new do
@@ -14,6 +16,14 @@ def action
 
       c.channels = ['#hyeon']
       c.max_reconnect_delay = 60
+    end
+
+    on :message, '스트릭' do |m|
+      doc = Nokogiri::HTML(open('https://github.com/simnalamburt'))
+      text = doc.at_css('#contributions-calendar .contrib-column:last span.contrib-number').content
+
+      # ex) 15 days
+      m.reply text
     end
 
     on :message, 'ㅇㅅㅇ)b' do |m|
