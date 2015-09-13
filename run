@@ -29,6 +29,13 @@ def action
 end
 
 unless ARGV == ['production']
+  trap 'SIGINT' do
+    puts ''
+    puts 'Bye!'
+    puts ''
+    exit
+  end
+
   action
 else
   loop do
