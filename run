@@ -5,14 +5,19 @@ def action
   bot = Cinch::Bot.new do
     configure do |c|
       c.nick = '김젼봇'
+      c.realname = 'love'
+      c.user = 'slavery'
+
       c.server = 'irc.ozinger.org'
       c.port = 6697
+      c.ssl.use = true
+
       c.channels = ['#test']
-      c.max_reconnect_delay = 10
+      c.max_reconnect_delay = 60
     end
 
-    on :message, 'IP' do |m|
-      m.reply `ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1 }'`
+    on :message, 'ㅇㅅㅇ)b' do |m|
+      m.reply 'd(ㅇㅅㅇ'
     end
   end
 
