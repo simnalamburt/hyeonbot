@@ -2,6 +2,7 @@
 require 'cinch'
 require 'nokogiri'
 require 'open-uri'
+require 'date'
 
 def action
   bot = Cinch::Bot.new do
@@ -20,10 +21,23 @@ def action
 
     on :message, '스트릭' do |m|
       doc = Nokogiri::HTML(open('https://github.com/simnalamburt'))
-      text = doc.at_css('#contributions-calendar .contrib-column:last span.contrib-number').content
+      doc = doc.css('#contributions-calendar .contrib-column:last')
 
-      # ex) 15 days
-      m.reply text
+      count = doc.at_css('span.contrib-number').content.split.first.to_i
+      cleared = Date.parse(doc.at_css('span.text-muted:last').content.strip.lines.last.strip) == Date.today
+
+      if count > 0
+        message = if cleared
+          '오늘의 미션을 클리어하셨습니다. :3'
+        else
+          '아직 오늘의 미션을 클리어하지 않으셨습니다! ㅇㅅㅇ'
+        end
+        message = "커밋 스트릭을 #{count}일째 유지중, #{message}"
+      else
+        message = '커밋 스트릭이 끊겼습니다! (ू˃̣̣︿˂̣̣ ू)'
+      end
+
+      m.reply message
     end
 
     on :message, 'ㅇㅅㅇ)b' do |m|
