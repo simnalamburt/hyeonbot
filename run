@@ -19,6 +19,10 @@ def action
     on :message, 'ㅇㅅㅇ)b' do |m|
       m.reply 'd(ㅇㅅㅇ'
     end
+
+    on :message, '>ㅅㅇ' do |m|
+      m.reply 'ㅇㅅ<'
+    end
   end
 
   bot.start
