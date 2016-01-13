@@ -1,13 +1,16 @@
 김젼봇
 ========
 
-eth0에 걸려있는 IP주소를 알려주는 봇
+IRC 봇
 
 ```sh
+# Install dependencies
 sudo apt-get install ruby2.2-dev zlib1g-dev
-sudo gem install cinch nokogiri
+sudo gem install cinch nokogiri daumdic
 
+# Run in debug mode
 ./run
 
+# Run in production mode
 ./run production
 ```
