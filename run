@@ -3,6 +3,7 @@ require 'cinch'
 require 'nokogiri'
 require 'open-uri'
 require 'date'
+require 'daumdic'
 
 def action
   bot = Cinch::Bot.new do
@@ -17,6 +18,13 @@ def action
 
       c.channels = ['#hyeon']
       c.max_reconnect_delay = 60
+    end
+
+    on :message, /^d; (.+)$/ do |m, query|
+      result = Daumdic.search(query)
+      result = 'ㅇㅅㅇ)a' if result.nil?
+
+      m.reply result
     end
 
     on :message, '스트릭' do |m|
