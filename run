@@ -32,6 +32,7 @@ def run
     end
     on :message, /^d (.+)$/, &method(:daumdic)
     on :message, /^dic (.+)$/, &method(:daumdic)
+    on :message, /^Dic (.+)$/, &method(:daumdic)
 
     on :message, '스트릭' do |m|
       doc = Nokogiri::HTML(open('https://github.com/simnalamburt'))
