@@ -24,12 +24,14 @@ def run
       c.max_reconnect_delay = 60
     end
 
-    on :message, /^d (.+)$/ do |m, query|
+    def daumdic(m, query)
       result = Daumdic.search(query)
       result = 'ㅇㅅㅇ)a' if result.nil?
 
       m.reply result
     end
+    on :message, /^d (.+)$/, &method(:daumdic)
+    on :message, /^dic (.+)$/, &method(:daumdic)
 
     on :message, '스트릭' do |m|
       doc = Nokogiri::HTML(open('https://github.com/simnalamburt'))

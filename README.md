@@ -19,7 +19,7 @@ sudo gem install cinch nokogiri daumdic
 
 ```console
 # 사전기능
-d elope
+dic elope
 [ilóup]  눈이 맞아 함께 달아나다, 가출하다, 도망가다
 
 d spado
