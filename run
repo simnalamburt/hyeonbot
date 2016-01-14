@@ -24,7 +24,7 @@ def run
       c.max_reconnect_delay = 60
     end
 
-    on :message, /^d; (.+)$/ do |m, query|
+    on :message, /^d (.+)$/ do |m, query|
       result = Daumdic.search(query)
       result = 'ㅇㅅㅇ)a' if result.nil?
 

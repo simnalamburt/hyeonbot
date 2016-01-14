@@ -19,10 +19,10 @@ sudo gem install cinch nokogiri daumdic
 
 ```console
 # 사전기능
-d; elope
+d elope
 [ilóup]  눈이 맞아 함께 달아나다, 가출하다, 도망가다
 
-d; spado
+d spado
 [spéidou]  거세한 사람, 생식 불능자
 
 # 깃헙 스트릭
