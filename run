@@ -5,7 +5,11 @@ require 'open-uri'
 require 'date'
 require 'daumdic'
 
-def action
+def production?
+  ARGV == ['production']
+end
+
+def run
   bot = Cinch::Bot.new do
     configure do |c|
       c.nick = '김젼봇'
@@ -60,27 +64,19 @@ def action
   bot.start
 end
 
-unless ARGV == ['production']
+if production?
+  loop do
+    begin
+      run
+    rescue Exception => msg
+      print "\n\n오직 죽음만이 나를 멈출 수 있다\n\n#{msg}\n\n"
+    end
+  end
+else
   trap 'SIGINT' do
-    puts ''
-    puts 'Bye!'
-    puts ''
+    print "\n\nBye!\n\n"
     exit
   end
 
-  action
-else
-  loop do
-    begin
-      action
-    rescue Exception => msg
-      puts ''
-      puts ''
-      puts '오직 죽음만이 나를 멈출 수 있다'
-      puts ''
-      puts msg
-      puts ''
-      puts ''
-    end
-  end
+  run
 end
