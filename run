@@ -12,7 +12,7 @@ end
 def run
   bot = Cinch::Bot.new do
     configure do |c|
-      c.nick = '김젼봇'
+      c.nick = if production?; '김젼봇' else '봇테스트' end
       c.realname = 'love'
       c.user = 'slavery'
 
