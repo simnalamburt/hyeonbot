@@ -35,8 +35,8 @@ def run
     on :message, /^Dic (.+)$/, &method(:daumdic)
 
 
-    def streak(m, username)
-      doc = Nokogiri::HTML(open('https://github.com/#{username}'))
+    def streak(m, username = 'simnalamburt')
+      doc = Nokogiri::HTML(open("https://github.com/#{username}"))
       doc = doc.css('#contributions-calendar .contrib-column:last')
 
       count = doc.at_css('span.contrib-number').content.split.first.to_i
@@ -55,10 +55,7 @@ def run
 
       m.reply message
     end
-
-    on :message, '스트릭' do |m|
-        streak(m, 'simnalamburt')
-    end
+    on :message, '스트릭', &method(:streak)
     on :message, /^streak (.+)$/, &method(:streak)
 
     on :message, 'ㅇㅅㅇ)b' do |m|
