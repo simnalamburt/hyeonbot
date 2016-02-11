@@ -35,11 +35,19 @@ def run
     on :message, /^Dic (.+)$/, &method(:daumdic)
 
 
-    def streak(m, username = 'simnalamburt')
-      doc = Nokogiri::HTML(open("https://github.com/#{username}"))
+    def get_streak_message(username)
+      doc = begin
+        Nokogiri::HTML(open("https://github.com/#{username}"))
+      rescue StandardError => ex
+        return "#{username}은/는 존재하지 않습니다."
+      end
       doc = doc.css('#contributions-calendar .contrib-column:last')
 
-      count = doc.at_css('span.contrib-number').content.split.first.to_i
+      contrib_number = doc.at_css('span.contrib-number')
+      if contrib_number.nil?
+        return "#{username}은/는 사람이 아닙니다."
+      end
+      count = contrib_number.content.split.first.to_i
       cleared = Date.parse(doc.at_css('span.text-muted:last').content.strip.lines.last.strip) == Date.today
 
       if count > 0
@@ -48,12 +56,14 @@ def run
         else
           '아직 오늘의 미션을 클리어하지 않으셨습니다! ㅇㅅㅇ'
         end
-        message = "커밋 스트릭을 #{count}일째 유지중, #{message}"
+        "커밋 스트릭을 #{count}일째 유지중, #{message}"
       else
-        message = '커밋 스트릭이 끊겼습니다! (ू˃̣̣︿˂̣̣ ू)'
+        '커밋 스트릭이 끊겼습니다! (ू˃̣̣︿˂̣̣ ू)'
       end
+    end
 
-      m.reply message
+    def streak(m, username = 'simnalamburt')
+      m.reply get_streak_message(username)
     end
     on :message, '스트릭', &method(:streak)
     on :message, /^streak (.+)$/, &method(:streak)
