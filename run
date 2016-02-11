@@ -20,7 +20,7 @@ def run
       c.port = 6697
       c.ssl.use = true
 
-      c.channels = ['#test']
+      c.channels = [if production?; '#test' else '#blahblah' end]
       c.max_reconnect_delay = 60
     end
 
