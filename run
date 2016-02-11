@@ -66,6 +66,7 @@ def run
       m.reply get_streak_message(username)
     end
     on :message, '스트릭', &method(:streak)
+    on :message, /^스트릭 (.+)$/, &method(:streak)
     on :message, /^streak (.+)$/, &method(:streak)
 
     on :message, 'ㅇㅅㅇ)b' do |m|
