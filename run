@@ -6,7 +6,7 @@ require 'date'
 require 'daumdic'
 
 def production?
-  ARGV == ['production']
+  ARGV == ['--production']
 end
 
 def run

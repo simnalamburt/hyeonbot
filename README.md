@@ -7,8 +7,8 @@ IRC 봇
 # Install dependencies
 bundle
 
-./run             # Debug mode
-./run production  # Production mode
+./run               # Debug mode
+./run --production  # Production mode
 ```
 
 ### Features
