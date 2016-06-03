@@ -78,6 +78,7 @@ def run
     end
   end
 
+  bot.loggers.level = :warn
   bot.start
 end
 
