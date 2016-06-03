@@ -1,0 +1,9 @@
+[Unit]
+Description=Hyeon Kim's irc bot
+
+[Service]
+User=simnalamburt
+ExecStart=/home/simnalamburt/services/ircbot/run --production
+
+[Install]
+WantedBy=multi-user.target
