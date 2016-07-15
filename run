@@ -9,92 +9,82 @@ def production?
   ARGV == ['--production']
 end
 
-def run
-  bot = Cinch::Bot.new do
-    configure do |c|
-      c.nick = if production?; '김젼봇' else '봇테스트' end
-      c.realname = 'love'
-      c.user = 'slavery'
-
-      c.server = 'irc.ozinger.org'
-      c.port = 6697
-      c.ssl.use = true
-
-      c.channels = [if production?; '#test' else '#blahblah' end]
-      c.max_reconnect_delay = 60
-    end
-
-    def daumdic(m, query)
-      result = Daumdic.search(query)
-      result = 'ㅇㅅㅇ)a' if result.nil?
-
-      m.reply result
-    end
-    on :message, /^d (.+)$/, &method(:daumdic)
-    on :message, /^dic (.+)$/, &method(:daumdic)
-    on :message, /^Dic (.+)$/, &method(:daumdic)
-
-
-    def get_streak_message(username)
-      doc = begin
-        Nokogiri::HTML(open("https://github.com/#{username}"))
-      rescue StandardError => ex
-        return '없는 사람입니다 ㅇㅅaㅇ'
-      end
-      doc = doc.css('#contributions-calendar .contrib-column:last')
-
-      contrib_number = doc.at_css('span.contrib-number')
-      if contrib_number.nil?
-        return "#{username}은/는 사람이 아닙니다."
-      end
-      count = contrib_number.content.split.first.to_i
-      cleared = Date.parse(doc.at_css('span.text-muted:last').content.strip.lines.last.strip) == Date.today
-
-      if count > 0
-        message = if cleared
-          '오늘의 미션을 클리어하셨습니다. :3'
-        else
-          '아직 오늘의 미션을 클리어하지 않으셨습니다! ㅇㅅㅇ'
-        end
-        "커밋 스트릭을 #{count}일째 유지중, #{message}"
-      else
-        '커밋 스트릭이 끊겼습니다! (ू˃̣̣︿˂̣̣ ू)'
-      end
-    end
-
-    def streak(m, username = 'simnalamburt')
-      m.reply get_streak_message(username)
-    end
-    on :message, '스트릭', &method(:streak)
-    on :message, /^스트릭 (.+)$/, &method(:streak)
-    on :message, /^streak (.+)$/, &method(:streak)
-
-    on :message, 'ㅇㅅㅇ)b' do |m|
-      m.reply 'd(ㅇㅅㅇ'
-    end
-
-    on :message, '>ㅅㅇ' do |m|
-      m.reply 'ㅇㅅ<'
-    end
-  end
-
-  bot.loggers.level = :warn
-  bot.start
-end
-
-if production?
-  loop do
-    begin
-      run
-    rescue Exception => msg
-      print "\n\n오직 죽음만이 나를 멈출 수 있다\n\n#{msg}\n\n"
-    end
-  end
-else
+unless production?
   trap 'SIGINT' do
+    sleep 5
     print "\n\nBye!\n\n"
     exit
   end
-
-  run
 end
+
+
+bot = Cinch::Bot.new do
+  configure do |c|
+    c.nick = if production?; '김젼봇' else '봇테스트' end
+    c.realname = 'love'
+    c.user = 'slavery'
+
+    c.server = 'irc.ozinger.org'
+    c.port = 6697
+    c.ssl.use = true
+
+    c.channels = [if production?; '#test' else '#blahblah' end]
+    c.max_reconnect_delay = 60
+  end
+
+  def daumdic(m, query)
+    result = Daumdic.search(query)
+    result = 'ㅇㅅㅇ)a' if result.nil?
+
+    m.reply result
+  end
+  on :message, /^d (.+)$/, &method(:daumdic)
+  on :message, /^dic (.+)$/, &method(:daumdic)
+  on :message, /^Dic (.+)$/, &method(:daumdic)
+
+
+  def get_streak_message(username)
+    doc = begin
+      Nokogiri::HTML(open("https://github.com/#{username}"))
+    rescue StandardError => ex
+      return '없는 사람입니다 ㅇㅅaㅇ'
+    end
+    doc = doc.css('#contributions-calendar .contrib-column:last')
+
+    contrib_number = doc.at_css('span.contrib-number')
+    if contrib_number.nil?
+      return "#{username}은/는 사람이 아닙니다."
+    end
+    count = contrib_number.content.split.first.to_i
+    cleared = Date.parse(doc.at_css('span.text-muted:last').content.strip.lines.last.strip) == Date.today
+
+    if count > 0
+      message = if cleared
+        '오늘의 미션을 클리어하셨습니다. :3'
+      else
+        '아직 오늘의 미션을 클리어하지 않으셨습니다! ㅇㅅㅇ'
+      end
+      "커밋 스트릭을 #{count}일째 유지중, #{message}"
+    else
+      '커밋 스트릭이 끊겼습니다! (ू˃̣̣︿˂̣̣ ू)'
+    end
+  end
+
+  def streak(m, username = 'simnalamburt')
+    m.reply get_streak_message(username)
+  end
+  on :message, '스트릭', &method(:streak)
+  on :message, /^스트릭 (.+)$/, &method(:streak)
+  on :message, /^streak (.+)$/, &method(:streak)
+
+  on :message, 'ㅇㅅㅇ)b' do |m|
+    m.reply 'd(ㅇㅅㅇ'
+  end
+
+  on :message, '>ㅅㅇ' do |m|
+    m.reply 'ㅇㅅ<'
+  end
+end
+
+bot.loggers.level = :warn
+bot.start
