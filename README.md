@@ -35,6 +35,35 @@ d(ㅇㅅㅇ
 
 <br>
 
+Deploy with docker
+--------
+To prepare the docker image:
+
+```shell
+sudo docker build -t ircbot .
+```
+
+To run it:
+
+```shell
+sudo docker run --detach \
+    --name ircbot \
+    --restart always \
+    ircbot
+```
+
+Etc:
+
+```shell
+# Attach to the running docker image
+sudo docker exec -it ircbot /bin/sh
+
+# Stop running docker container
+sudo docker stop ircbot
+```
+
+<br>
+
 --------
 *ircbot* is primarily distributed under the terms of both the [MIT license]
 and the [Apache License (Version 2.0)]. See [COPYRIGHT] for details.
