@@ -1,9 +1,36 @@
 김젼봇
 ========
+Personall IRC bot
+```console
+# Daum dictionary
+<@사용자> dic elope
+<@김젼봇> [ilóup]  눈이 맞아 함께 달아나다, 가출하다, 도망가다
 
-IRC 봇
+<@사용자> d spado
+<@김젼봇> [spéidou]  거세한 사람, 생식 불능자
 
-```sh
+# Count GitHub streak
+<@사용자> 스트릭
+<@김젼봇> 커밋 스트릭을 12일째 유지중, 오늘의 미션을 클리어하셨습니다. :3
+
+# Highfive
+<@사용자> ㅇㅅㅇ)b
+<@김젼봇> d(ㅇㅅㅇ
+
+<@사용자> >ㅅㅇ
+<@김젼봇> ㅇㅅ<
+```
+
+### How to run it
+With docker:
+
+```bash
+docker run --detach simnalamburt/ircbot
+```
+
+Manual build:
+
+```bash
 # Install dependencies
 bundle
 
@@ -11,31 +38,10 @@ bundle
 ./run --production  # Production mode
 ```
 
-### Features
-
-```console
-# 사전기능
-dic elope
-[ilóup]  눈이 맞아 함께 달아나다, 가출하다, 도망가다
-
-d spado
-[spéidou]  거세한 사람, 생식 불능자
-
-# 깃헙 스트릭
-스트릭
-커밋 스트릭을 12일째 유지중, 오늘의 미션을 클리어하셨습니다. :3
-
-# 맞장구
-ㅇㅅㅇ)b
-d(ㅇㅅㅇ
-
->ㅅㅇ
-ㅇㅅ<
-```
 
 <br>
 
-Deploy with docker
+How to build docker image locally
 --------
 To prepare the docker image:
 
@@ -58,8 +64,11 @@ Etc:
 # Attach to the running docker image
 sudo docker exec -it ircbot /bin/sh
 
-# Stop running docker container
+# Stop running the docker container
 sudo docker stop ircbot
+
+# Totally removing
+sudo docker rm ircbot
 ```
 
 <br>
