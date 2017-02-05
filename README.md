@@ -22,32 +22,35 @@ Personall IRC bot
 ```
 
 ### How to run it
-The container image of *ircbot* project is uploaded to both [Docker Hub] and
-[Quay].
+The container image of *ircbot* project is uploaded to both [Quay] and [Docker
+Hub].
 
 Running with [rkt] using [systemd-nspawn]:
 ```bash
-# From Docker Hub
-sudo systemd-run --slice=machine \
-    rkt run --insecure-options=image --dns=8.8.8.8 docker://simnalamburt/ircbot
-
 # From Quay
-sudo systemd-run --slice=machine \
-    rkt run --insecure-options=image --dns=8.8.8.8 docker://quay.io/simnalamburt/ircbot
+sudo systemd-run --slice=machine --unit=ircbot \
+    rkt run --insecure-options=image --dns=8.8.8.8 \
+    docker://quay.io/simnalamburt/ircbot
+
+# From Docker Hub
+sudo systemd-run --slice=machine --unit=ircbot \
+    rkt run --insecure-options=image --dns=8.8.8.8 \
+    docker://simnalamburt/ircbot
 ```
 
 Running with docker:
 ```bash
-# From Docker Hub
-docker run --detach=true simnalamburt/ircbot
-
 # From Quay
 docker run --detach=true quay.io/simnalamburt/ircbot
+
+# From Docker Hub
+docker run --detach=true simnalamburt/ircbot
 ```
 
 Manual build:
 ```bash
 # Install dependencies
+git clone https://github.com/simnalamburt/ircbot.git --depth=1 && cd ircbot
 bundle
 
 ./run               # Debug mode
