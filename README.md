@@ -22,10 +22,15 @@ Personall IRC bot
 ```
 
 ### How to run it
-With docker:
+The container image of *ircbot* project is uploaded to both [Docker Hub] and
+[Quay]. Running with docker:
 
 ```bash
-docker run --detach simnalamburt/ircbot
+# From Docker Hub
+docker run -d simnalamburt/ircbot
+
+# From Quay
+docker run -d quay.io/simnalamburt/ircbot
 ```
 
 Manual build:
@@ -37,7 +42,6 @@ bundle
 ./run               # Debug mode
 ./run --production  # Production mode
 ```
-
 
 <br>
 
@@ -77,6 +81,8 @@ sudo docker rm ircbot
 *ircbot* is primarily distributed under the terms of both the [MIT license]
 and the [Apache License (Version 2.0)]. See [COPYRIGHT] for details.
 
+[Docker Hub]: https://hub.docker.com/r/simnalamburt/ircbot/
+[Quay]: https://quay.io/repository/simnalamburt/ircbot
 [MIT license]: LICENSE-MIT
 [Apache License (Version 2.0)]: LICENSE-APACHE
 [COPYRIGHT]: COPYRIGHT
