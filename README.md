@@ -25,29 +25,17 @@ Personall IRC bot
 The container image of *ircbot* project is uploaded to both [Quay] and [Docker
 Hub].
 
-Running with [rkt] using [systemd-nspawn]:
+Running with [rkt]:
 ```bash
-# From Quay
-sudo systemd-run --slice=machine --unit=ircbot \
-    rkt run --insecure-options=image --dns=8.8.8.8 \
-    docker://quay.io/simnalamburt/ircbot
-
-# From Docker Hub
-sudo systemd-run --slice=machine --unit=ircbot \
-    rkt run --insecure-options=image --dns=8.8.8.8 \
-    docker://simnalamburt/ircbot
+sudo systemd-run --slice=machine --unit=ircbot rkt run --dns=host quay.io/simnalamburt/ircbot
 ```
 
 Running with docker:
 ```bash
-# From Quay
-docker run --detach=true quay.io/simnalamburt/ircbot
-
-# From Docker Hub
-docker run --detach=true simnalamburt/ircbot
+docker run -d simnalamburt/ircbot
 ```
 
-Manual build:
+Running without container:
 ```bash
 # Install dependencies
 git clone https://github.com/simnalamburt/ircbot.git --depth=1 && cd ircbot
@@ -98,7 +86,6 @@ and the [Apache License (Version 2.0)]. See [COPYRIGHT] for details.
 [Docker Hub]: https://hub.docker.com/r/simnalamburt/ircbot/
 [Quay]: https://quay.io/repository/simnalamburt/ircbot
 [rkt]: https://coreos.com/rkt
-[systemd-nspawn]: https://www.freedesktop.org/software/systemd/man/systemd-nspawn.html
 [MIT license]: LICENSE-MIT
 [Apache License (Version 2.0)]: LICENSE-APACHE
 [COPYRIGHT]: COPYRIGHT
