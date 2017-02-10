@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Copyright 2015-2017 Hyeon Kim
 #
 # Licensed under the Apache License, Version 2.0 <LICENSE-APACHE or
