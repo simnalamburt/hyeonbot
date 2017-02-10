@@ -53,8 +53,8 @@ Manual build:
 git clone https://github.com/simnalamburt/ircbot.git --depth=1 && cd ircbot
 bundle
 
-./run               # Debug mode
-./run --production  # Production mode
+bundle exec ./run               # Debug mode
+bundle exec ./run --production  # Production mode
 ```
 
 <br>
