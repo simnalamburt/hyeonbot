@@ -53,40 +53,6 @@ bot = Cinch::Bot.new do
   on :message, /^Dic (.+)$/, &method(:daumdic)
 
 
-  def get_streak_message(username)
-    doc = begin
-      Nokogiri::HTML(open("https://github.com/#{username}"))
-    rescue StandardError => ex
-      return '없는 사람입니다 ㅇㅅaㅇ'
-    end
-    doc = doc.css('#contributions-calendar .contrib-column:last')
-
-    contrib_number = doc.at_css('span.contrib-number')
-    if contrib_number.nil?
-      return "#{username}은/는 사람이 아닙니다."
-    end
-    count = contrib_number.content.split.first.to_i
-    cleared = Date.parse(doc.at_css('span.text-muted:last').content.strip.lines.last.strip) == Date.today
-
-    if count > 0
-      message = if cleared
-        '오늘의 미션을 클리어하셨습니다. :3'
-      else
-        '아직 오늘의 미션을 클리어하지 않으셨습니다! ㅇㅅㅇ'
-      end
-      "커밋 스트릭을 #{count}일째 유지중, #{message}"
-    else
-      '커밋 스트릭이 끊겼습니다! (ू˃̣̣︿˂̣̣ ू)'
-    end
-  end
-
-  def streak(m, username = 'simnalamburt')
-    m.reply get_streak_message(username)
-  end
-  on :message, '스트릭', &method(:streak)
-  on :message, /^스트릭 (.+)$/, &method(:streak)
-  on :message, /^streak (.+)$/, &method(:streak)
-
   on :message, 'ㅇㅅㅇ)b' do |m|
     m.reply 'd(ㅇㅅㅇ'
   end
