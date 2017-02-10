@@ -8,7 +8,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Install ruby dependencies
-COPY .bundle /usr/src/app/
+COPY .bundle/ /usr/src/app/.bundle/
 COPY Gemfile /usr/src/app/
 COPY Gemfile.lock /usr/src/app/
 RUN set -x \
