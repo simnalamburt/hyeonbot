@@ -1,0 +1,5 @@
+# Ignore dependencies
+.bundle/lib
+# Remove VCS files
+.git
+.gitignore

@@ -8,6 +8,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Install ruby dependencies
+COPY .bundle /usr/src/app/
 COPY Gemfile /usr/src/app/
 COPY Gemfile.lock /usr/src/app/
 RUN set -x \
@@ -30,4 +31,4 @@ RUN apk add --no-cache libxslt
 # Copy source codes
 COPY . /usr/src/app
 
-CMD ["./run", "--production"]
+CMD ["bundle", "exec", "./run", "--production"]
