@@ -1,5 +1,5 @@
-# Ignore dependencies
-.bundle/lib
+# Ignore bundle configs and build dependencies
+.bundle/
 # Remove VCS files
 .git
 .gitignore
