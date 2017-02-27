@@ -1,4 +1,4 @@
-FROM ruby:2.4-alpine
+FROM ruby:2-alpine
 
 # Update system
 RUN apk upgrade --no-cache
