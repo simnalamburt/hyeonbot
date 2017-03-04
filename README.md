@@ -27,12 +27,17 @@ Hub].
 
 Running with [rkt]:
 ```bash
-sudo systemd-run --slice=machine --unit=ircbot rkt run --dns=host quay.io/simnalamburt/ircbot
+rkt run --dns=host \
+    --insecure-options=image \
+    docker://quay.io/simnalamburt/ircbot
 ```
 
-Running with docker:
+Running with [docker]:
 ```bash
-docker run -d simnalamburt/ircbot
+docker run --detach \
+    --name ircbot \
+    --restart always \
+    simnalamburt/ircbot
 ```
 
 Running without container:
@@ -47,43 +52,12 @@ bundle exec ./run --production  # Production mode
 
 <br>
 
-How to build docker image locally
---------
-To prepare the docker image:
-
-```shell
-sudo docker build -t ircbot .
-```
-
-To run it:
-
-```shell
-sudo docker run --detach \
-    --name ircbot \
-    --restart always \
-    ircbot
-```
-
-Etc:
-
-```shell
-# Attach to the running docker image
-sudo docker exec -it ircbot /bin/sh
-
-# Stop running the docker container
-sudo docker stop ircbot
-
-# Totally removing
-sudo docker rm ircbot
-```
-
-<br>
-
 --------
 *ircbot* is primarily distributed under the terms of both the [MIT license]
 and the [Apache License (Version 2.0)]. See [COPYRIGHT] for details.
 
 [Docker Hub]: https://hub.docker.com/r/simnalamburt/ircbot/
+[docker]: https://docker.com/
 [Quay]: https://quay.io/repository/simnalamburt/ircbot
 [rkt]: https://coreos.com/rkt
 [MIT license]: LICENSE-MIT
