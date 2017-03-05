@@ -7,11 +7,22 @@
 # except according to those terms.
 
 [Unit]
+# Metadata
 Description=Hyeon Kim's irc bot
+Documentation=https://github.com/simnalamburt/ircbot
+# Wait for networking
+Requires=network-online.target
+After=network-online.target
 
 [Service]
-User=simnalamburt
-ExecStart=/home/simnalamburt/services/ircbot/run --production
+Slice=machine.slice
+# Fetch the app
+ExecStartPre=/usr/bin/rkt fetch --insecure-options=image docker://quay.io/simnalamburt/ircbot
+# Start the app
+ExecStart=/usr/bin/rkt run --dns=host quay.io/simnalamburt/ircbot
+ExecStopPost=/usr/bin/rkt gc --mark-only
+KillMode=mixed
+Restart=always
 
 [Install]
 WantedBy=multi-user.target

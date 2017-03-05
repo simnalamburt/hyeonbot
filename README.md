@@ -31,6 +31,7 @@ rkt run --dns=host \
     --insecure-options=image \
     docker://quay.io/simnalamburt/ircbot
 ```
+See [contrib/README.md](contrib/README.md) to
 
 Running with [docker]:
 ```bash
