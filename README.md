@@ -25,15 +25,15 @@ Personall IRC bot
 The container image of *ircbot* project is uploaded to both [Quay] and [Docker
 Hub].
 
-Running with [rkt]:
+#### A. Using [rkt]
+See [`contrib/`](contrib/) directory for systemd interop.
 ```bash
 rkt run --dns=host \
     --insecure-options=image \
     docker://quay.io/simnalamburt/ircbot
 ```
-See [contrib/README.md](contrib/README.md) to
 
-Running with [docker]:
+#### B. Using [docker]
 ```bash
 docker run --detach \
     --name ircbot \
@@ -41,7 +41,7 @@ docker run --detach \
     simnalamburt/ircbot
 ```
 
-Running without container:
+#### C. Running without container
 ```bash
 # Install dependencies
 git clone https://github.com/simnalamburt/ircbot.git --depth=1 && cd ircbot
