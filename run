@@ -42,16 +42,12 @@ bot = Cinch::Bot.new do
     c.max_reconnect_delay = 60
   end
 
-  def daumdic(m, query)
+  on :message, /^[dD](?:ic)? (.+)$/ do |m, query|
     result = Daumdic.search(query)
     result = 'ㅇㅅㅇ)a' if result.nil?
 
     m.reply result
   end
-  on :message, /^d (.+)$/, &method(:daumdic)
-  on :message, /^dic (.+)$/, &method(:daumdic)
-  on :message, /^Dic (.+)$/, &method(:daumdic)
-
 
   on :message, 'ㅇㅅㅇ)b' do |m|
     m.reply 'd(ㅇㅅㅇ'
