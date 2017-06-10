@@ -21,27 +21,20 @@ Personall IRC bot
 <@김젼봇> ㅇㅅ<
 ```
 
-### How to run it
-The container image of *ircbot* project is uploaded to both [Quay] and [Docker
-Hub].
+<br>
 
-#### A. Using [rkt]
-See [`contrib/`](contrib/) directory for systemd interop.
+How to run it
+--------
+#### A. With [docker]
 ```bash
-rkt run --dns=host \
-    --insecure-options=image \
-    docker://quay.io/simnalamburt/ircbot
-```
+docker run -d --name ircbot --restart always simnalamburt/ircbot
 
-#### B. Using [docker]
-```bash
-docker run --detach \
-    --name ircbot \
-    --restart always \
-    simnalamburt/ircbot
+# Alternative source
+docker run -d --name ircbot --restart always quay.io/simnalamburt/ircbot
 ```
+The container image of *ircbot* project is uploaded to both [Quay] and [Docker Hub].
 
-#### C. Running without container
+#### B. Without container
 ```bash
 # Install dependencies
 git clone https://github.com/simnalamburt/ircbot.git --depth=1 && cd ircbot
