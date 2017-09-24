@@ -27,12 +27,8 @@ How to run it
 --------
 #### A. With [docker]
 ```bash
-docker run -d --name ircbot --restart always simnalamburt/ircbot
-
-# Alternative source
-docker run -d --name ircbot --restart always quay.io/simnalamburt/ircbot
+docker run -d --restart=always simnalamburt/ircbot
 ```
-The container image of *ircbot* project is uploaded to both [Quay] and [Docker Hub].
 
 #### B. Without container
 ```bash
