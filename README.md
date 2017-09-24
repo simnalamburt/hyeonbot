@@ -46,10 +46,7 @@ bundle exec ./run --production  # Production mode
 *ircbot* is primarily distributed under the terms of both the [MIT license]
 and the [Apache License (Version 2.0)]. See [COPYRIGHT] for details.
 
-[Docker Hub]: https://hub.docker.com/r/simnalamburt/ircbot/
 [docker]: https://docker.com/
-[Quay]: https://quay.io/repository/simnalamburt/ircbot
-[rkt]: https://coreos.com/rkt
 [MIT license]: LICENSE-MIT
 [Apache License (Version 2.0)]: LICENSE-APACHE
 [COPYRIGHT]: COPYRIGHT
