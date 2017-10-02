@@ -92,5 +92,11 @@ bot = Cinch::Bot.new do
   end
 end
 
+# Handle ^C gracefully
+trap 'SIGINT' do
+  print "\n\nBye!\n\n"
+  exit
+end
+
 bot.loggers.level = :warn
 bot.start
