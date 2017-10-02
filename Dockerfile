@@ -15,7 +15,6 @@ RUN set -x \
     build-base \
     libxml2-dev \
     libxslt-dev \
-  # Throw errors if Gemfile has been modified since Gemfile.lock
   && bundle config --global frozen 1 \
   && bundle config build.nokogiri \
     --use-system-libraries \
