@@ -22,25 +22,29 @@ def load_config_from_file(default, filename)
   end
   return default if data.class != Hash
 
-  server   = data['server'  ]
-  port     = data['port'    ]
-  channels = data['channels']&.uniq
+  server    = data['server'   ]
+  port      = data['port'     ]
+  channels  = data['channels' ]&.uniq
+  log_level = data['log_level']&.to_sym
 
   config = {}
-  config[:server  ] = server   || default[:server  ]
-  config[:port    ] = port     || default[:port    ]
-  config[:channels] = channels || default[:channels]
+  config[:server   ] = server    || default[:server   ]
+  config[:port     ] = port      || default[:port     ]
+  config[:channels ] = channels  || default[:channels ]
+  config[:log_level] = log_level || default[:log_level]
   return config
 end
 
 def load_config_from_env(default)
-  server = ENV['HYEONBOT_SERVER']
-  port   = ENV['HYEONBOT_PORT'  ]&.to_i
+  server    = ENV['HYEONBOT_SERVER'   ]
+  port      = ENV['HYEONBOT_PORT'     ]&.to_i
+  log_level = ENV['HYEONBOT_LOG_LEVEL']&.to_sym
 
   config = {}
-  config[:server  ] = server   || default[:server  ]
-  config[:port    ] = port     || default[:port    ]
-  config[:channels] = default[:channels]
+  config[:server   ] = server    || default[:server   ]
+  config[:port     ] = port      || default[:port     ]
+  config[:channels ] =              default[:channels ]
+  config[:log_level] = log_level || default[:log_level]
 
   return config
 end
@@ -50,9 +54,10 @@ end
 #
 config = {
   # Default configs
-  server: 'irc.ozinger.org',
-  port: 6697,
-  channels: [],
+  server:     'irc.ozinger.org',
+  port:       6697,
+  channels:   [],
+  log_level:  :debug,
 }
 
 config = load_config_from_file(config, '/etc/hyeonbot/config.yaml')
@@ -122,5 +127,5 @@ trap 'SIGINT' do
   exit
 end
 
-bot.loggers.level = :warn
+bot.loggers.level = config[:log_level]
 bot.start

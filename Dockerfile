@@ -30,4 +30,5 @@ RUN apk add --no-cache libxslt
 # Copy source codes
 COPY . /usr/src/app
 
+ENV HYEONBOT_LOG_LEVEL=warn
 CMD ["bundle", "exec", "run"]

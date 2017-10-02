@@ -27,7 +27,10 @@ How to run it
 --------
 #### A. With [docker]
 ```bash
-docker run -d --restart=always simnalamburt/hyeonbot
+docker run -d --restart=always \
+  -e HYEONBOT_SERVER=irc.ozinger.org \
+  -e HYEONBOT_PORT=6697 \
+  simnalamburt/hyeonbot
 ```
 
 #### B. Without container
