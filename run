@@ -62,7 +62,7 @@ config = load_config_from_env(config)
 #
 # Connect to the network
 #
-bot = Cinch::Bot.new do
+bot = Cinch::Bot.new do |b|
   configure do |c|
     c.nick = '김젼봇'
     c.realname = 'love'
@@ -89,6 +89,10 @@ bot = Cinch::Bot.new do
 
   on :message, '>ㅅㅇ' do |m|
     m.reply 'ㅇㅅ<'
+  end
+
+  on :invite do |m|
+    b.join m.channel
   end
 end
 
