@@ -27,13 +27,13 @@ How to run it
 --------
 #### A. With [docker]
 ```bash
-docker run -d --restart=always simnalamburt/ircbot
+docker run -d --restart=always simnalamburt/hyeonbot
 ```
 
 #### B. Without container
 ```bash
 # Install dependencies
-git clone https://github.com/simnalamburt/ircbot.git --depth=1 && cd ircbot
+git clone https://github.com/simnalamburt/hyeonbot.git --depth=1 && cd hyeonbot
 bundle
 
 bundle exec run
@@ -42,7 +42,7 @@ bundle exec run
 <br>
 
 --------
-*ircbot* is primarily distributed under the terms of both the [MIT license]
+*hyeonbot* is primarily distributed under the terms of both the [MIT license]
 and the [Apache License (Version 2.0)]. See [COPYRIGHT] for details.
 
 [docker]: https://docker.com/
