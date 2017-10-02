@@ -27,7 +27,7 @@ bot = Cinch::Bot.new do
   end
 
   on :message, /^[dD](?:ic)? (.+)$/ do |m, query|
-    result = Daumdic.search(query)
+    result = Daumdic.one_liner(query)
     result = 'ㅇㅅㅇ)a' if result.nil?
 
     m.reply result

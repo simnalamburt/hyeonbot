@@ -1,8 +1,12 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    cinch (2.3.2)
-    daumdic (0.1.1)
+    cinch (2.3.4)
+    daumdic (1.0.0)
+      nokogiri (~> 1.8)
+    mini_portile2 (2.3.0)
+    nokogiri (1.8.1)
+      mini_portile2 (~> 2.3.0)
 
 PLATFORMS
   ruby
