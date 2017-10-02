@@ -91,6 +91,26 @@ bot = Cinch::Bot.new do |b|
     m.reply 'ㅇㅅ<'
   end
 
+  # 올바른 언어생활
+  on :message, /우리나라/ do |m|
+    m.reply '우리나라 → 한국'
+  end
+  on :message, /\b국산/ do |m|
+    m.reply '국산 → 한국산'
+  end
+  on :message, /\b국어/ do |m|
+    m.reply '국어 → 한국어'
+  end
+  on :message, /한글화/ do |m|
+    m.reply '한글화 → 한국어 번역 ' + Cinch::Formatting.format(:grey, 'https://t.co/ztyockmyrj 참고')
+  end
+  on :message, /쉐어/ do |m|
+    m.reply '쉐어 → 셰어 ' + Cinch::Formatting.format(:grey, '쉘 → 셸, 솨프 → 샤프')
+  end
+  on :message, /됬/ do |m|
+    m.reply '됬 → 됐'
+  end
+
   on :invite do |m|
     b.join m.channel
   end
