@@ -9,20 +9,70 @@
 # option. This file may not be copied, modified, or distributed
 # except according to those terms.
 
+require 'yaml'
+require 'json'
 require 'cinch'
 require 'daumdic'
 
+def load_config_from_file(default, filename)
+  begin
+    data = YAML.load_file(filename)
+  rescue Errno::ENOENT, Psych::SyntaxError
+    return default
+  end
+  return default if data.class != Hash
+
+  server   = data['server'  ]
+  port     = data['port'    ]
+  channels = data['channels']&.uniq
+
+  config = {}
+  config[:server  ] = server   || default[:server  ]
+  config[:port    ] = port     || default[:port    ]
+  config[:channels] = channels || default[:channels]
+  return config
+end
+
+def load_config_from_env(default)
+  server = ENV['HYEONBOT_SERVER']
+  port   = ENV['HYEONBOT_PORT'  ]&.to_i
+
+  config = {}
+  config[:server  ] = server   || default[:server  ]
+  config[:port    ] = port     || default[:port    ]
+  config[:channels] = default[:channels]
+
+  return config
+end
+
+#
+# Load configs
+#
+config = {
+  # Default configs
+  server: 'irc.ozinger.org',
+  port: 6697,
+  channels: [],
+}
+
+config = load_config_from_file(config, '/etc/hyeonbot/config.yaml')
+config = load_config_from_file(config, 'config.yaml')
+config = load_config_from_env(config)
+
+#
+# Connect to the network
+#
 bot = Cinch::Bot.new do
   configure do |c|
     c.nick = '김젼봇'
     c.realname = 'love'
     c.user = 'slavery'
 
-    c.server = 'irc.ozinger.org'
-    c.port = 6697
+    c.server = config[:server]
+    c.port = config[:port]
     c.ssl.use = true
 
-    c.channels = ['#test']
+    c.channels = config[:channels]
     c.max_reconnect_delay = 60
   end
 

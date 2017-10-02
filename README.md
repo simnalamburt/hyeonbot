@@ -33,8 +33,10 @@ docker run -d --restart=always simnalamburt/hyeonbot
 #### B. Without container
 ```bash
 # Install dependencies
-git clone https://github.com/simnalamburt/hyeonbot.git --depth=1 && cd hyeonbot
 bundle
+
+# Update config
+vim config.yaml
 
 bundle exec run
 ```

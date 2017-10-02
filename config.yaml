@@ -1,0 +1,13 @@
+## Configuration file for hyeonbot
+## You can place this file at "/etc/hyeonbot/config.yaml"
+
+## IRC Server to connect
+# server: irc.ozinger.org
+
+## Port number
+# port: 6697
+
+## Initial channls
+# channels:
+#   - '#my_channel'
+#   - '#test'
