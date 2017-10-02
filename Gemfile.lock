@@ -3,9 +3,6 @@ GEM
   specs:
     cinch (2.3.2)
     daumdic (0.1.1)
-    mini_portile2 (2.0.0)
-    nokogiri (1.6.7.2)
-      mini_portile2 (~> 2.0.0.rc2)
 
 PLATFORMS
   ruby
@@ -13,7 +10,6 @@ PLATFORMS
 DEPENDENCIES
   cinch
   daumdic
-  nokogiri
 
 BUNDLED WITH
-   1.12.4
+   1.14.3

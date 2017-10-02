@@ -10,9 +10,6 @@
 # except according to those terms.
 
 require 'cinch'
-require 'nokogiri'
-require 'open-uri'
-require 'date'
 require 'daumdic'
 
 bot = Cinch::Bot.new do
