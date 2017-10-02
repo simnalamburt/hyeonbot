@@ -15,22 +15,9 @@ require 'open-uri'
 require 'date'
 require 'daumdic'
 
-def production?
-  ARGV == ['--production']
-end
-
-unless production?
-  trap 'SIGINT' do
-    sleep 5
-    print "\n\nBye!\n\n"
-    exit
-  end
-end
-
-
 bot = Cinch::Bot.new do
   configure do |c|
-    c.nick = if production?; '김젼봇' else '봇테스트' end
+    c.nick = '김젼봇'
     c.realname = 'love'
     c.user = 'slavery'
 
@@ -38,7 +25,7 @@ bot = Cinch::Bot.new do
     c.port = 6697
     c.ssl.use = true
 
-    c.channels = [if production?; '#test' else '#blahblah' end]
+    c.channels = ['#test']
     c.max_reconnect_delay = 60
   end
 

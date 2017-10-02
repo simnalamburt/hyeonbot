@@ -36,8 +36,7 @@ docker run -d --restart=always simnalamburt/ircbot
 git clone https://github.com/simnalamburt/ircbot.git --depth=1 && cd ircbot
 bundle
 
-bundle exec ./run               # Debug mode
-bundle exec ./run --production  # Production mode
+bundle exec run
 ```
 
 <br>

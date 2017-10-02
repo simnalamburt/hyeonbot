@@ -30,4 +30,4 @@ RUN apk add --no-cache libxslt
 # Copy source codes
 COPY . /usr/src/app
 
-CMD ["bundle", "exec", "./run", "--production"]
+CMD ["bundle", "exec", "run"]
