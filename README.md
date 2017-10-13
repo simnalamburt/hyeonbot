@@ -9,9 +9,9 @@ Personall IRC bot
 <@사용자> d spado
 <@김젼봇> [spéidou]  거세한 사람, 생식 불능자
 
-# Count GitHub streak
-<@사용자> 스트릭
-<@김젼봇> 커밋 스트릭을 12일째 유지중, 오늘의 미션을 클리어하셨습니다. :3
+# Fix mistakes
+<@사용자> 한글화
+<@김젼봇> 한글화 → 한국어 번역 https://t.co/ztyockmyrj 참고
 
 # Highfive
 <@사용자> ㅇㅅㅇ)b
