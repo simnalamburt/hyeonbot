@@ -24,13 +24,11 @@ def load_config_from_file(default, filename)
 
   server    = data['server'   ]
   port      = data['port'     ]
-  channels  = data['channels' ]&.uniq
   log_level = data['log_level']&.to_sym
 
   config = {}
   config[:server   ] = server    || default[:server   ]
   config[:port     ] = port      || default[:port     ]
-  config[:channels ] = channels  || default[:channels ]
   config[:log_level] = log_level || default[:log_level]
   return config
 end
@@ -43,7 +41,6 @@ def load_config_from_env(default)
   config = {}
   config[:server   ] = server    || default[:server   ]
   config[:port     ] = port      || default[:port     ]
-  config[:channels ] =              default[:channels ]
   config[:log_level] = log_level || default[:log_level]
 
   return config
@@ -56,7 +53,6 @@ config = {
   # Default configs
   server:     'irc.ozinger.org',
   port:       6697,
-  channels:   [],
   log_level:  :debug,
 }
 
@@ -77,7 +73,6 @@ bot = Cinch::Bot.new do |b|
     c.port = config[:port]
     c.ssl.use = true
 
-    c.channels = config[:channels]
     c.max_reconnect_delay = 60
   end
 
