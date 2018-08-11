@@ -39,9 +39,6 @@ docker run -d --restart=always \
 # Install dependencies
 bundle
 
-# Update config
-vim config.yaml
-
 bundle exec run
 ```
 

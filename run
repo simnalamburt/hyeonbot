@@ -9,64 +9,33 @@
 # option. This file may not be copied, modified, or distributed
 # except according to those terms.
 
-require 'yaml'
-require 'json'
 require 'cinch'
 require 'daumdic'
 
-def load_config_from_file(default, filename)
-  begin
-    data = YAML.load_file(filename)
-  rescue Errno::ENOENT, Psych::SyntaxError
-    return default
-  end
-  return default if data.class != Hash
-
-  server    = data['server'   ]
-  port      = data['port'     ]
-  log_level = data['log_level']&.to_sym
-
-  config = {}
-  config[:server   ] = server    || default[:server   ]
-  config[:port     ] = port      || default[:port     ]
-  config[:log_level] = log_level || default[:log_level]
-  return config
-end
-
-def load_config_from_env(default)
-  server    = ENV['HYEONBOT_SERVER'   ]
-  port      = ENV['HYEONBOT_PORT'     ]&.to_i
-  log_level = ENV['HYEONBOT_LOG_LEVEL']&.to_sym
-
-  config = {}
-  config[:server   ] = server    || default[:server   ]
-  config[:port     ] = port      || default[:port     ]
-  config[:log_level] = log_level || default[:log_level]
-
-  return config
+#
+# Handle ^C gracefully
+#
+trap 'SIGINT' do
+  print "\n\nBye!\n\n"
+  exit
 end
 
 #
-# Load configs
+# Load configs from environment variables
 #
 config = {
-  # Default configs
-  server:     'irc.ozinger.org',
-  port:       6697,
-  log_level:  :debug,
+  server:     ENV['HYEONBOT_SERVER'   ]         || 'irc.ozinger.org',
+  port:       ENV['HYEONBOT_PORT'     ]&.to_i   || 6697,
+  log_level:  ENV['HYEONBOT_LOG_LEVEL']&.to_sym || :debug,
 }
 
-config = load_config_from_file(config, '/etc/hyeonbot/config.yaml')
-config = load_config_from_file(config, 'config.yaml')
-config = load_config_from_env(config)
-
 #
-# Connect to the network
+# IRC bot definition
 #
 bot = Cinch::Bot.new do |b|
   configure do |c|
     c.nick = '김젼봇'
-    c.realname = 'IRC Robot. See https://github.com/simnalamburt/hyeonbot for the reference.'
+    c.realname = 'IRC bot. See https://github.com/simnalamburt/hyeonbot for the reference.'
     c.user = 'hyeonbot'
 
     c.server = config[:server]
@@ -112,11 +81,9 @@ bot = Cinch::Bot.new do |b|
   end
 end
 
-# Handle ^C gracefully
-trap 'SIGINT' do
-  print "\n\nBye!\n\n"
-  exit
-end
-
 bot.loggers.level = config[:log_level]
+
+#
+# Connect to the network
+#
 bot.start
