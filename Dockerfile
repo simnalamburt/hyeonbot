@@ -1,15 +1,12 @@
+#
+# Build phase
+#
 FROM ruby:2-alpine
 
-# Update system
-RUN apk upgrade --no-cache
-
-# Prepare app environment
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-
-# Install ruby dependencies
-COPY Gemfile /usr/src/app/
-COPY Gemfile.lock /usr/src/app/
+# Install and build ruby dependencies
+WORKDIR /tmp
+COPY Gemfile .
+COPY Gemfile.lock .
 RUN set -x \
   && apk add --no-cache --virtual .bundle-deps \
     build-base \
@@ -23,11 +20,17 @@ RUN set -x \
   && bundle install --no-cache \
   && apk del .bundle-deps
 
+#
+# Run phase
+#
+FROM ruby:2-alpine
+
 # Install shared object dependencies
 RUN apk add --no-cache libxslt
-
+# Copy dependencies
+COPY --from=0 /usr/local/bundle /usr/local/bundle
 # Copy source codes
-COPY . /usr/src/app
+WORKDIR /root
+COPY run .
 
-ENV HYEONBOT_LOG_LEVEL=warn
-CMD ["bundle", "exec", "run"]
+CMD ["/root/run"]

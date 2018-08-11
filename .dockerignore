@@ -1,5 +1,0 @@
-# Ignore bundle configs and build dependencies
-.bundle/
-# Remove VCS files
-.git
-.gitignore
