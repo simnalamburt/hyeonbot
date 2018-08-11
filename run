@@ -70,8 +70,8 @@ config = load_config_from_env(config)
 bot = Cinch::Bot.new do |b|
   configure do |c|
     c.nick = '김젼봇'
-    c.realname = 'love'
-    c.user = 'slavery'
+    c.realname = 'IRC Robot. See https://github.com/simnalamburt/hyeonbot for the reference.'
+    c.user = 'hyeonbot'
 
     c.server = config[:server]
     c.port = config[:port]
@@ -81,6 +81,7 @@ bot = Cinch::Bot.new do |b|
     c.max_reconnect_delay = 60
   end
 
+  # Daum dictionary
   on :message, /^[dD](?:ic)? (.+)$/ do |m, query|
     result = Daumdic.one_liner(query)
     result = 'ㅇㅅㅇ)a' if result.nil?
@@ -88,10 +89,10 @@ bot = Cinch::Bot.new do |b|
     m.reply result
   end
 
+  # Health check
   on :message, 'ㅇㅅㅇ)b' do |m|
     m.reply 'd(ㅇㅅㅇ'
   end
-
   on :message, '>ㅅㅇ' do |m|
     m.reply 'ㅇㅅ<'
   end
@@ -116,6 +117,7 @@ bot = Cinch::Bot.new do |b|
     m.reply '됬 → 됐'
   end
 
+  # React on invitation
   on :invite do |m|
     b.join m.channel
   end

@@ -1,6 +1,7 @@
-김젼봇
+Hyeonbot
 ========
 Personall IRC bot
+
 ```console
 # Daum dictionary
 <@사용자> dic elope
