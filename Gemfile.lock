@@ -5,7 +5,7 @@ GEM
     daumdic (1.0.0)
       nokogiri (~> 1.8)
     mini_portile2 (2.3.0)
-    nokogiri (1.8.1)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
 
 PLATFORMS
@@ -16,4 +16,4 @@ DEPENDENCIES
   daumdic
 
 BUNDLED WITH
-   1.14.3
+   1.17.1
