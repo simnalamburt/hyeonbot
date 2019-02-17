@@ -10,5 +10,5 @@
 
 source 'https://rubygems.org'
 
-gem 'cinch'
-gem 'daumdic'
+gem 'cinch', '~>2.3'
+gem 'daumdic', '~>1.0'

@@ -12,8 +12,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  cinch
-  daumdic
+  cinch (~> 2.3)
+  daumdic (~> 1.0)
 
 BUNDLED WITH
    2.0.1
