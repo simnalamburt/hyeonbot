@@ -1,4 +1,4 @@
-Hyeonbot
+Hyeonbot [![Docker Hub Status]][Docker Hub Link]
 ========
 Personall IRC bot
 
@@ -48,7 +48,10 @@ bundle exec run
 *hyeonbot* is primarily distributed under the terms of both the [MIT license]
 and the [Apache License (Version 2.0)]. See [COPYRIGHT] for details.
 
-[docker]: https://docker.com/
+
+[Docker Hub Status]: https://badgen.net/docker/pulls/simnalamburt/hyeonbot/?icon=docker&label=pulls
+[Docker Hub Link]: https://hub.docker.com/r/simnalamburt/hyeonbot/
+[docker]: https://www.docker.com/
 [MIT license]: LICENSE-MIT
 [Apache License (Version 2.0)]: LICENSE-APACHE
 [COPYRIGHT]: COPYRIGHT
