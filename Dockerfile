@@ -15,18 +15,16 @@ FROM ruby:2-alpine
 WORKDIR /tmp
 COPY Gemfile .
 COPY Gemfile.lock .
-RUN set -x \
-  && apk add --no-cache --virtual .bundle-deps \
-    build-base \
-    libxml2-dev \
-    libxslt-dev \
-  && bundle config --global frozen 1 \
-  && bundle config build.nokogiri \
-    --use-system-libraries \
-    --with-xml2-config=/usr/bin/xml2-config \
-    --with-xslt-config=/usr/bin/xslt-config \
-  && bundle install --no-cache \
-  && apk del .bundle-deps
+RUN apk add --no-cache --virtual .bundle-deps \
+      build-base \
+      libxml2-dev \
+      libxslt-dev
+RUN bundle config --global frozen 1
+RUN bundle config build.nokogiri \
+      --use-system-libraries \
+      --with-xml2-config=/usr/bin/xml2-config \
+      --with-xslt-config=/usr/bin/xslt-config
+RUN bundle install --no-cache
 
 #
 # Run phase
