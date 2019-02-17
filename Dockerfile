@@ -10,15 +10,19 @@
 # Build phase
 #
 FROM ruby:2-alpine
-
-# Install and build ruby dependencies
 WORKDIR /tmp
 COPY Gemfile .
 COPY Gemfile.lock .
+
+# Install build dependencies for native extensions
 RUN apk add --no-cache --virtual .bundle-deps \
       build-base \
       libxml2-dev \
-      libxslt-dev
+      libxslt-dev \
+      sqlite-dev
+
+# Install gems
+RUN gem update bundler
 RUN bundle config --global frozen 1
 RUN bundle config build.nokogiri \
       --use-system-libraries \
@@ -32,11 +36,11 @@ RUN bundle install --no-cache
 FROM ruby:2-alpine
 
 # Install shared object dependencies
-RUN apk add --no-cache libxslt
+RUN apk add --no-cache libxslt sqlite-libs
 # Copy dependencies
 COPY --from=0 /usr/local/bundle /usr/local/bundle
 # Copy source codes
-WORKDIR /root
-COPY run .
+WORKDIR /a
+COPY run /usr/local/bin/run
 
-CMD ["/root/run"]
+CMD ["/usr/local/bin/run"]

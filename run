@@ -11,6 +11,7 @@
 
 require 'cinch'
 require 'daumdic'
+require 'sqlite3'
 
 #
 # Handle ^C gracefully
