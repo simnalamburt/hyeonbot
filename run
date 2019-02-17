@@ -9,24 +9,28 @@
 # option. This file may not be copied, modified, or distributed
 # except according to those terms.
 
+require 'sqlite3'
 require 'cinch'
 require 'daumdic'
-require 'sqlite3'
 
-#
 # Handle ^C gracefully
-#
 trap 'SIGINT' do
   print "\n\nBye!\n\n"
   exit
 end
 
-#
 # Load configs from environment variables
-#
 CFG_SERVER = ENV['HYEONBOT_SERVER'] || 'irc.ozinger.org'
 CFG_PORT = ENV['HYEONBOT_PORT']&.to_i || 6697
 CFG_LOG_LEVEL = ENV['HYEONBOT_LOG_LEVEL']&.to_sym || :debug
+
+# Connect to DB
+db = SQLite3::Database.new 'db'
+db.execute <<-'SQL'
+CREATE TABLE IF NOT EXISTS channels (
+  name TEXT PRIMARY KEY
+);
+SQL
 
 #
 # IRC bot definition
@@ -40,8 +44,9 @@ bot = Cinch::Bot.new do |b|
     c.server = CFG_SERVER
     c.port = CFG_PORT
     c.ssl.use = true
-
     c.max_reconnect_delay = 60
+
+    c.channels = db.execute('SELECT * FROM channels').flatten
   end
 
   # Daum dictionary
@@ -76,7 +81,27 @@ bot = Cinch::Bot.new do |b|
 
   # React on invitation
   on :invite do |m|
+    # Join the channel
     b.join m.channel
+
+    # Update DB
+    begin
+      db.execute('INSERT INTO channels VALUES (?)', m.target.name)
+      b.loggers.info "Hyeonbot has been invited to #{m.target.name}"
+    rescue SQLite3::ConstraintException
+      b.loggers.warn 'Hyeonbot has been invited to the already joined channel.'
+    end
+  end
+
+  on :kick do |m|
+    # Check if kicked user was hyeonbot or someone else
+    if m.params[1] != m.bot.nick
+      return
+    end
+
+    # Hyeonbot has been kicked, update DB
+    db.execute('DELETE FROM channels WHERE name = ?', m.target.name)
+    b.loggers.info "Hyeonbot has been kicked from #{m.target.name}"
   end
 end
 
