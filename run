@@ -45,7 +45,7 @@ bot = Cinch::Bot.new do |b|
 
   # Daum dictionary
   on :message, /^[dD](?:ic)? (.+)$/ do |m, query|
-    result = Daumdic.one_liner(query)
+    result = Daumdic.one_liner(query.strip.downcase)
     result = 'ㅇㅅㅇ)a' if result.nil?
 
     m.reply result
