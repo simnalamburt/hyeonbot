@@ -23,11 +23,9 @@ end
 #
 # Load configs from environment variables
 #
-config = {
-  server:     ENV['HYEONBOT_SERVER'   ]         || 'irc.ozinger.org',
-  port:       ENV['HYEONBOT_PORT'     ]&.to_i   || 6697,
-  log_level:  ENV['HYEONBOT_LOG_LEVEL']&.to_sym || :debug,
-}
+CFG_SERVER = ENV['HYEONBOT_SERVER'] || 'irc.ozinger.org'
+CFG_PORT = ENV['HYEONBOT_PORT']&.to_i || 6697
+CFG_LOG_LEVEL = ENV['HYEONBOT_LOG_LEVEL']&.to_sym || :debug
 
 #
 # IRC bot definition
@@ -38,8 +36,8 @@ bot = Cinch::Bot.new do |b|
     c.realname = 'IRC bot. See https://github.com/simnalamburt/hyeonbot for the reference.'
     c.user = 'hyeonbot'
 
-    c.server = config[:server]
-    c.port = config[:port]
+    c.server = CFG_SERVER
+    c.port = CFG_PORT
     c.ssl.use = true
 
     c.max_reconnect_delay = 60
@@ -81,7 +79,7 @@ bot = Cinch::Bot.new do |b|
   end
 end
 
-bot.loggers.level = config[:log_level]
+bot.loggers.level = CFG_LOG_LEVEL
 
 #
 # Connect to the network
