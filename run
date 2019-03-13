@@ -72,6 +72,9 @@ bot = Cinch::Bot.new do |b|
   on :message, /한글화/ do |m|
     m.reply '한글화 → 한국어 번역 ' + Cinch::Formatting.format(:grey, 'https://t.co/ztyockmyrj')
   end
+  on :message, /쉐이더/ do |m|
+    m.reply '쉐이더 → 셰이더 ' + Cinch::Formatting.format(:grey, '쉘 → 셸, 쉐어 → 셰어 https://korean.go.kr/front/onlineQna/onlineQnaView.do?qna_seq=120529')
+  end
   on :message, /쉐이크/ do |m|
     m.reply '쉐이크 → 셰이크 ' + Cinch::Formatting.format(:grey, '쉘 → 셸, 쉐어 → 셰어 https://korean.go.kr/front/onlineQna/onlineQnaView.do?qna_seq=120529')
   end
