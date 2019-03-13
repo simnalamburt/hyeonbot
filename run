@@ -70,13 +70,19 @@ bot = Cinch::Bot.new do |b|
     m.reply '우리나라 → 한국'
   end
   on :message, /한글화/ do |m|
-    m.reply '한글화 → 한국어 번역 ' + Cinch::Formatting.format(:grey, 'https://t.co/ztyockmyrj 참고')
+    m.reply '한글화 → 한국어 번역 ' + Cinch::Formatting.format(:grey, 'https://t.co/ztyockmyrj')
   end
   on :message, /쉐어/ do |m|
-    m.reply '쉐어 → 셰어 ' + Cinch::Formatting.format(:grey, '쉘 → 셸, 솨프 → 샤프')
+    m.reply '쉐어 → 셰어 ' + Cinch::Formatting.format(:grey, '쉘 → 셸 https://korean.go.kr/front/onlineQna/onlineQnaView.do?qna_seq=120529')
+  end
+  on :message, /쉘/ do |m|
+    m.reply '쉘 → 셸 ' + Cinch::Formatting.format(:grey, '쉘 → 셸 https://korean.go.kr/front/onlineQna/onlineQnaView.do?qna_seq=120529')
   end
   on :message, /됬/ do |m|
-    m.reply '됬 → 됐'
+    m.reply '됬 → 됐 ' + Cinch::Formatting.format(:grey, 'https://korean.go.kr/front/onlineQna/onlineQnaView.do?qna_seq=151151')
+  end
+  on :message, /메세지/ do |m|
+    m.reply '메세지 → 메시지 ' + Cinch::Formatting.format(:grey, 'https://korean.go.kr/front/mcfaq/mcfaqView.do?mcfaq_seq=5548')
   end
 
   # React on invitation
