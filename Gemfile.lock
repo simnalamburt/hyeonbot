@@ -1,21 +1,27 @@
+PATH
+  remote: .
+  specs:
+    hyeonbot (1.0.0)
+      cinch (~> 2.3)
+      daumdic (~> 1.0)
+      sqlite3 (~> 1.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
     cinch (2.3.4)
     daumdic (1.0.0)
       nokogiri (~> 1.8)
-    mini_portile2 (2.3.0)
-    nokogiri (1.8.5)
-      mini_portile2 (~> 2.3.0)
+    mini_portile2 (2.4.0)
+    nokogiri (1.10.1)
+      mini_portile2 (~> 2.4.0)
     sqlite3 (1.4.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  cinch (~> 2.3)
-  daumdic (~> 1.0)
-  sqlite3 (~> 1.4)
+  hyeonbot!
 
 BUNDLED WITH
    2.0.1

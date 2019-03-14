@@ -9,7 +9,4 @@
 # except according to those terms.
 
 source 'https://rubygems.org'
-
-gem 'cinch', '~>2.3'
-gem 'daumdic', '~>1.0'
-gem 'sqlite3', '~>1.4'
+gemspec

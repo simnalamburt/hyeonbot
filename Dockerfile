@@ -6,11 +6,23 @@
 # option. This file may not be copied, modified, or distributed
 # except according to those terms.
 
+
 #
-# Build phase
+# Build gem
 #
-FROM ruby:2-alpine
+FROM ruby:2-alpine as build
 WORKDIR /tmp
+COPY hyeonbot.gemspec .
+COPY exe exe
+RUN gem build hyeonbot.gemspec --output hyeonbot.gem
+
+
+#
+# Build native dependencies
+#
+FROM ruby:2-alpine as dependencies
+WORKDIR /tmp
+COPY hyeonbot.gemspec .
 COPY Gemfile .
 COPY Gemfile.lock .
 
@@ -30,17 +42,15 @@ RUN bundle config build.nokogiri \
       --with-xslt-config=/usr/bin/xslt-config
 RUN bundle install --no-cache
 
+
 #
-# Run phase
+# Run
 #
 FROM ruby:2-alpine
-
 # Install shared object dependencies
 RUN apk add --no-cache libxslt sqlite-libs
 # Copy dependencies
-COPY --from=0 /usr/local/bundle /usr/local/bundle
-# Copy source codes
-WORKDIR /a
-COPY run /usr/local/bin/run
-
-CMD ["/usr/local/bin/run"]
+COPY --from=dependencies /usr/local/bundle /usr/local/bundle
+COPY --from=build /tmp/hyeonbot.gem /tmp
+RUN gem install /tmp/hyeonbot.gem
+CMD ["hyeonbot"]

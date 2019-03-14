@@ -1,6 +1,9 @@
 # Ignore dependencies
 /.bundle/lib/
 
+# Build results
+/hyeonbot-*.gem
+
 # Sqlite3
 /db
 /db-*
