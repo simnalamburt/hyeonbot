@@ -53,4 +53,5 @@ RUN apk add --no-cache libxslt sqlite-libs
 COPY --from=dependencies /usr/local/bundle /usr/local/bundle
 COPY --from=build /tmp/hyeonbot.gem /tmp
 RUN gem install /tmp/hyeonbot.gem
+WORKDIR /a
 CMD ["hyeonbot"]
