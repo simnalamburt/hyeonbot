@@ -26,20 +26,20 @@ Personall IRC bot
 
 How to run it
 --------
-#### A. With [docker]
-```bash
+```
+# Using docker
 docker run -d --restart=always \
   -e HYEONBOT_SERVER=irc.ozinger.org \
   -e HYEONBOT_PORT=6697 \
   simnalamburt/hyeonbot
+
+# Without docker
+gem install hyeonbot && hyeonbot
 ```
 
-#### B. Without container
+### How to build hyeonbot from source codes
 ```bash
-# Install dependencies
-bundle
-
-bundle exec run
+gem build hyeonbot.gemspec
 ```
 
 <br>
