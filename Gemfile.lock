@@ -13,7 +13,7 @@ GEM
     daumdic (1.0.0)
       nokogiri (~> 1.8)
     mini_portile2 (2.4.0)
-    nokogiri (1.10.3)
+    nokogiri (1.10.5)
       mini_portile2 (~> 2.4.0)
     sqlite3 (1.4.1)
 
