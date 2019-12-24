@@ -28,9 +28,24 @@ How to run it
 --------
 ```
 # Using docker
-docker run -d --restart=always \
+docker run simnalamburt/hyeonbot
+
+# If you want to use non-default config
+#
+# Environment Variables:
+#   HYEONBOT_SERVER     Hostname of IRC server (default: "irc.ozinger.org")
+#   HYEONBOT_PORT       Port number (default: "6697")
+#   HYEONBOT_LOG_LEVEL  Log level, one of "debug", "log", "info", "warn", "error", "fatal" (default: "debug")
+#
+# NOTE: hyeonbot requires TLS connection
+docker run \
   -e HYEONBOT_SERVER=irc.ozinger.org \
   -e HYEONBOT_PORT=6697 \
+  simnalamburt/hyeonbot
+
+# If you want persistency
+docker run -d --restart=always \
+  --mount type=bind,source=<YOUR CHOICE>,target=/a \
   simnalamburt/hyeonbot
 
 # Without docker
