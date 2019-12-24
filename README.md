@@ -26,7 +26,7 @@ Personall IRC bot
 
 How to run it
 --------
-```
+```bash
 # Using docker
 docker run simnalamburt/hyeonbot
 
