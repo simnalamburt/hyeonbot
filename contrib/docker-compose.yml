@@ -6,3 +6,5 @@ services:
     environment:
       - HYEONBOT_SERVER=irc.ozinger.org
       - HYEONBOT_PORT=6697
+    volumes:
+      - /srv/hyeonbot/:/a/
