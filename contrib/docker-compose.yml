@@ -1,0 +1,8 @@
+# Sample docker-compose.yml
+version: '3'
+services:
+  hyeonbot:
+    image: simnalamburt/hyeonbot
+    environment:
+      - HYEONBOT_SERVER=irc.ozinger.org
+      - HYEONBOT_PORT=6697
