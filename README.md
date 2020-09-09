@@ -1,4 +1,4 @@
-Hyeonbot [![Docker Hub Status]][Docker Hub Link]
+Hyeonbot [![Docker Badge]][Docker Link]
 ========
 Personall IRC bot
 
@@ -28,7 +28,7 @@ How to run it
 --------
 ```bash
 # Using docker
-docker run simnalamburt/hyeonbot
+docker run ghcr.io/simnalamburt/hyeonbot
 
 # If you want to use non-default config
 #
@@ -41,12 +41,12 @@ docker run simnalamburt/hyeonbot
 docker run \
   -e HYEONBOT_SERVER=irc.ozinger.org \
   -e HYEONBOT_PORT=6697 \
-  simnalamburt/hyeonbot
+  ghcr.io/simnalamburt/hyeonbot
 
 # If you want persistency
 docker run -d --restart=always \
   --mount type=bind,source=<YOUR CHOICE>,target=/a \
-  simnalamburt/hyeonbot
+  ghcr.io/simnalamburt/hyeonbot
 
 # Without docker
 gem install hyeonbot && hyeonbot
@@ -64,9 +64,8 @@ gem build hyeonbot.gemspec
 and the [Apache License (Version 2.0)]. See [COPYRIGHT] for details.
 
 
-[Docker Hub Status]: https://badgen.net/docker/pulls/simnalamburt/hyeonbot/?icon=docker&label=pulls
-[Docker Hub Link]: https://hub.docker.com/r/simnalamburt/hyeonbot/
-[docker]: https://www.docker.com/
+[Docker Badge]: https://badgen.net/badge/icon/github%20container%20registry?icon=docker&label
+[Docker Link]: https://github.com/users/simnalamburt/packages/container/hyeonbot
 [MIT license]: LICENSE-MIT
 [Apache License (Version 2.0)]: LICENSE-APACHE
 [COPYRIGHT]: COPYRIGHT
