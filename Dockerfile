@@ -10,7 +10,7 @@
 #
 # Build gem
 #
-FROM ruby:2.6-alpine as build
+FROM ruby:3.0-alpine as build
 WORKDIR /tmp
 COPY hyeonbot.gemspec .
 COPY exe exe
@@ -20,11 +20,8 @@ RUN gem build hyeonbot.gemspec --output hyeonbot.gem
 #
 # Build native dependencies
 #
-FROM ruby:2.6-alpine as dependencies
+FROM ruby:3.0-alpine as dependencies
 WORKDIR /tmp
-COPY hyeonbot.gemspec .
-COPY Gemfile .
-COPY Gemfile.lock .
 
 # Install build dependencies for native extensions
 RUN apk add --no-cache --virtual .bundle-deps \
@@ -34,6 +31,9 @@ RUN apk add --no-cache --virtual .bundle-deps \
       sqlite-dev
 
 # Install gems
+COPY hyeonbot.gemspec .
+COPY Gemfile .
+COPY Gemfile.lock .
 RUN gem update bundler
 RUN bundle config --global frozen 1
 RUN bundle config build.nokogiri \
@@ -46,12 +46,16 @@ RUN bundle install --no-cache
 #
 # Run
 #
-FROM ruby:2.6-alpine
+FROM ruby:3.0-alpine
 # Install shared object dependencies
 RUN apk add --no-cache libxslt sqlite-libs
 # Copy dependencies
 COPY --from=dependencies /usr/local/bundle /usr/local/bundle
 COPY --from=build /tmp/hyeonbot.gem /tmp
+# Install hyeonbot
 RUN gem install /tmp/hyeonbot.gem
+# Enable MJIT
+ENV RUBYOPT=--jit
+
 WORKDIR /a
 CMD ["hyeonbot"]
