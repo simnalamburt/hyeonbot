@@ -1,17 +1,17 @@
 PATH
   remote: .
   specs:
-    hyeonbot (1.0.0)
-      cinch (~> 2.3)
+    hyeonbot (1.0.1)
       daumdic (~> 1.0)
+      mcinch (~> 2.4)
       sqlite3 (~> 1.4)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    cinch (2.3.4)
-    daumdic (1.0.0)
+    daumdic (1.0.1)
       nokogiri (~> 1.8)
+    mcinch (2.4.1)
     mini_portile2 (2.5.0)
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)

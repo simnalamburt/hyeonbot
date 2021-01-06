@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = 'hyeonbot'
-  s.version     = '1.0.0'
+  s.version     = '1.0.1'
 
   s.files       = ['exe/hyeonbot']
   s.authors     = ['Hyeon Kim']
@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
     'source_code_uri'   => 'https://github.com/simnalamburt/hyeonbot',
   }
 
-  s.add_runtime_dependency 'cinch', '~> 2.3'
+  s.add_runtime_dependency 'mcinch', '~> 2.4'
   s.add_runtime_dependency 'daumdic', '~> 1.0'
   s.add_runtime_dependency 'sqlite3', '~> 1.4'
 
