@@ -10,7 +10,7 @@
 #
 # Build gem
 #
-FROM ruby:3.0-alpine as build
+FROM ruby:3.0.2-alpine as build
 WORKDIR /tmp
 COPY hyeonbot.gemspec .
 COPY exe exe
@@ -20,7 +20,7 @@ RUN gem build hyeonbot.gemspec --output hyeonbot.gem
 #
 # Build native dependencies
 #
-FROM ruby:3.0-alpine as dependencies
+FROM ruby:3.0.2-alpine as dependencies
 WORKDIR /tmp
 
 # Install build dependencies for native extensions
@@ -46,7 +46,7 @@ RUN bundle install --no-cache
 #
 # Run
 #
-FROM ruby:3.0-alpine
+FROM ruby:3.0.2-alpine
 # Install shared object dependencies
 RUN apk add --no-cache libxslt sqlite-libs
 # Copy dependencies
