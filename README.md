@@ -52,6 +52,13 @@ docker run -d --restart=always \
 gem install hyeonbot && hyeonbot
 ```
 
+### How to build it
+```bash
+docker buildx build --push \
+  --platform linux/amd64,linux/arm64/v8 \
+  --tag ghcr.io/simnalamburt/hyeonbot:x.y.z .
+```
+
 ### How to build hyeonbot from source codes
 ```bash
 gem build hyeonbot.gemspec
