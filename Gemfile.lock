@@ -12,12 +12,17 @@ GEM
     daumdic (1.0.1)
       nokogiri (~> 1.8)
     mcinch (2.4.1)
+    mini_portile2 (2.6.1)
+    nokogiri (1.12.4)
+      mini_portile2 (~> 2.6.1)
+      racc (~> 1.4)
     nokogiri (1.12.4-x86_64-linux)
       racc (~> 1.4)
     racc (1.5.2)
     sqlite3 (1.4.2)
 
 PLATFORMS
+  ruby
   x86_64-linux
 
 DEPENDENCIES
