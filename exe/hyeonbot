@@ -42,6 +42,7 @@ hyeonbot
   YJIT     : #{RubyVM::YJIT.enabled? ? 'enabled' : 'not enabled'}
 
 EOF
+STDOUT.flush
 
 # Handle ^C gracefully
 trap 'SIGINT' do
