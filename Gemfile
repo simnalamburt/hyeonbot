@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright 2015-2021 Hyeon Kim
+# Copyright 2015-2025 Hyeon Kim
 #
 # Licensed under the Apache License, Version 2.0 <LICENSE-APACHE or
 # http://www.apache.org/licenses/LICENSE-2.0> or the MIT license
