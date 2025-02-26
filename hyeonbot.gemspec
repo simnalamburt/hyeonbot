@@ -20,6 +20,8 @@ Gem::Specification.new do |s|
     'source_code_uri'   => 'https://github.com/simnalamburt/hyeonbot',
   }
 
+  s.add_dependency 'base64', '~> 0.2' # For mcinch
+  s.add_dependency 'ostruct', '~> 0.6' # For mcinch
   s.add_dependency 'mcinch', '~> 2.4'
   s.add_dependency 'daumdic', '~> 1.0'
   s.add_dependency 'sqlite3', '~> 2.6'

@@ -2,13 +2,16 @@ PATH
   remote: .
   specs:
     hyeonbot (1.0.1)
+      base64 (~> 0.2)
       daumdic (~> 1.0)
       mcinch (~> 2.4)
+      ostruct (~> 0.6)
       sqlite3 (~> 2.6)
 
 GEM
   remote: https://rubygems.org/
   specs:
+    base64 (0.2.0)
     daumdic (1.0.1)
       nokogiri (~> 1.8)
     mcinch (2.4.1)
@@ -22,6 +25,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.18.3-x86_64-linux-gnu)
       racc (~> 1.4)
+    ostruct (0.6.1)
     racc (1.8.1)
     sqlite3 (2.6.0)
       mini_portile2 (~> 2.8.0)
