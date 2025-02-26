@@ -56,6 +56,7 @@ gem install hyeonbot && hyeonbot
 ```bash
 docker buildx build --push \
   --platform linux/amd64,linux/arm64/v8 \
+  --tag ghcr.io/simnalamburt/hyeonbot:latest \
   --tag ghcr.io/simnalamburt/hyeonbot:x.y.z .
 ```
 
