@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    hyeonbot (1.0.3)
+    hyeonbot (1.0.4)
       base64 (~> 0.2)
       daumdic (~> 1.0)
       mcinch (~> 2.4)
