@@ -20,9 +20,9 @@ Gem::Specification.new do |s|
     'source_code_uri'   => 'https://github.com/simnalamburt/hyeonbot',
   }
 
-  s.add_runtime_dependency 'mcinch', '~> 2.4'
-  s.add_runtime_dependency 'daumdic', '~> 1.0'
-  s.add_runtime_dependency 'sqlite3', '~> 1.4'
+  s.add_dependency 'mcinch', '~> 2.4'
+  s.add_dependency 'daumdic', '~> 1.0'
+  s.add_dependency 'sqlite3', '~> 2.6'
 
   s.bindir = 'exe'
   s.executables = 'hyeonbot'
