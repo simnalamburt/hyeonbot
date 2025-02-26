@@ -73,7 +73,7 @@ and the [Apache License (Version 2.0)]. See [COPYRIGHT] for details.
 
 
 [Docker Badge]: https://badgen.net/badge/icon/github%20container%20registry?icon=docker&label
-[Docker Link]: https://github.com/users/simnalamburt/packages/container/hyeonbot
+[Docker Link]: https://github.com/simnalamburt/hyeonbot/pkgs/container/hyeonbot
 [MIT license]: LICENSE-MIT
 [Apache License (Version 2.0)]: LICENSE-APACHE
 [COPYRIGHT]: COPYRIGHT
