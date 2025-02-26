@@ -10,7 +10,7 @@
 #
 # Build gem
 #
-FROM ruby:3.4.2-alpine as build
+FROM ruby:3.4.2-alpine AS build
 WORKDIR /tmp
 COPY hyeonbot.gemspec .
 COPY exe exe
@@ -20,7 +20,7 @@ RUN gem build hyeonbot.gemspec --output hyeonbot.gem
 #
 # Build native dependencies
 #
-FROM ruby:3.4.2-alpine as dependencies
+FROM ruby:3.4.2-alpine AS dependencies
 WORKDIR /tmp
 
 # Install build dependencies for native extensions
