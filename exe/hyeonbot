@@ -81,7 +81,7 @@ bot = Cinch::Bot.new do |b|
   end
 
   # Daum dictionary
-  on :message, /^[dD](?:ic)? (.+)$/ do |m, query|
+  on :message, /^(?:<.*> )?[dD](?:ic)? (.+)$/ do |m, query|
     result = Daumdic.one_liner(query.strip.downcase)
     result = 'ㅇㅅㅇ)a' if result.nil?
 
@@ -89,10 +89,10 @@ bot = Cinch::Bot.new do |b|
   end
 
   # Health check
-  on :message, 'ㅇㅅㅇ)b' do |m|
+  on :message, /^(?:<.*> )?ㅇㅅㅇ\)b$/ do |m|
     m.reply 'd(ㅇㅅㅇ'
   end
-  on :message, '>ㅅㅇ' do |m|
+  on :message, /^(?:<.*> )?>ㅅㅇ$/ do |m|
     m.reply 'ㅇㅅ<'
   end
 
