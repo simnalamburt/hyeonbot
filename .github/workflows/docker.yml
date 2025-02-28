@@ -1,0 +1,20 @@
+on:
+  push:
+    # Execute only when a tag in the format `vX.Y.Z` is pushed
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  docker:
+    runs-on: ubuntu-24.04-arm
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          TAG=${GITHUB_REF#refs/tags/v}
+          docker login ghcr.io -u '${{ github.actor }}' --password-stdin <<< '${{ secrets.GITHUB_TOKEN }}'
+          docker build --push \
+            --tag "ghcr.io/simnalamburt/hyeonbot:${TAG}" \
+            --tag 'ghcr.io/simnalamburt/hyeonbot:latest' .
