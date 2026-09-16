@@ -26,23 +26,19 @@ Personal IRC bot
 
 ### How to run
 ```bash
-cargo install --git https://github.com/simnalamburt/hyeonbot && hyeonbot
+# Install
+cargo install --git https://github.com/simnalamburt/hyeonbot
+
+# Prepare config.toml
+cp config.sample.toml config.toml
+
+# Run
+hyeonbot
 ```
 
-Hyeonbot connects to `irc.ozinger.org:6697` over TLS and remembers the channels
-it has been invited to in a SQLite database named `db` in the working
-directory. Configure it with environment variables:
-
-| Variable             | Default            |
-|----------------------|--------------------|
-| `HYEONBOT_SERVER`    | `irc.ozinger.org`  |
-| `HYEONBOT_PORT`      | `6697`             |
-| `HYEONBOT_LOG_LEVEL` | `debug`            |
-
-Build hyeonbot from source codes:
-```bash
-cargo build --release
-```
+Hyeonbot reads `config.toml` from the working directory. See
+[config.sample.toml](config.sample.toml) for the options. The channels it has
+been invited to are remembered in a SQLite database named `db` next to it.
 
 &nbsp;
 

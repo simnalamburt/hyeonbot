@@ -1,9 +1,38 @@
-use std::env;
 use std::io::Write;
+use std::path::Path;
 use std::process::ExitCode;
 
 use hyeonbot::Settings;
+use serde::Deserialize;
 use tracing_subscriber::EnvFilter;
+
+/// Contents of `config.toml`.
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct Config {
+    /// IRC server host
+    server: String,
+    /// IRC server port
+    #[serde(default = "default_port")]
+    port: u16,
+    /// Log level or filter directives (`trace`, `debug`, `info`, `warn`, `error`)
+    #[serde(default = "default_log_level")]
+    log_level: String,
+}
+
+fn default_port() -> u16 {
+    6697
+}
+
+fn default_log_level() -> String {
+    "debug".to_owned()
+}
+
+fn load_config(path: &Path) -> Result<Config, String> {
+    let text = std::fs::read_to_string(path)
+        .map_err(|err| format!("failed to read {}: {err}", path.display()))?;
+    toml::from_str(&text).map_err(|err| format!("failed to parse {}: {err}", path.display()))
+}
 
 const LOGO: &str = r"
                   .........
@@ -42,25 +71,25 @@ async fn main() -> ExitCode {
     );
     let _ = std::io::stdout().flush();
 
-    // Load configs from environment variables
+    // Load configs from config.toml (or the file given as the first argument)
+    let path = std::env::args_os()
+        .nth(1)
+        .map_or_else(|| "config.toml".into(), std::path::PathBuf::from);
+    let config = match load_config(&path) {
+        Ok(config) => config,
+        Err(err) => {
+            eprintln!("{err}");
+            return ExitCode::FAILURE;
+        }
+    };
     let settings = Settings {
-        server: env::var("HYEONBOT_SERVER").unwrap_or_else(|_| "irc.ozinger.org".to_owned()),
-        port: env::var("HYEONBOT_PORT")
-            .ok()
-            .and_then(|port| port.parse().ok())
-            .unwrap_or(6697),
+        server: config.server,
+        port: config.port,
         use_tls: true,
         db_path: "db".into(),
     };
-    let log_level = match env::var("HYEONBOT_LOG_LEVEL").as_deref() {
-        // Cinch (Ruby) log level names that tracing does not know
-        Ok("log") => "info".to_owned(),
-        Ok("fatal") => "error".to_owned(),
-        Ok(level) => level.to_owned(),
-        Err(_) => "debug".to_owned(),
-    };
     tracing_subscriber::fmt()
-        .with_env_filter(EnvFilter::new(log_level))
+        .with_env_filter(EnvFilter::new(config.log_level))
         .init();
 
     tokio::select! {

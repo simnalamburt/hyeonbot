@@ -1,0 +1,14 @@
+# Configuration of hyeonbot. Copy this file to `config.toml` in the working
+# directory, or pass its path as the first argument: `hyeonbot path/to/config.toml`.
+
+# IRC server to connect to. Required. The connection always uses TLS.
+server = "irc.libera.chat"
+
+# Port of the IRC server. Optional, defaults to 6697.
+port = 6697
+
+# Log verbosity. Optional, defaults to "debug".
+#
+# One of "trace", "debug", "info", "warn" and "error". Filter directives of
+# tracing-subscriber such as "info,hyeonbot=debug" are also accepted.
+log_level = "debug"

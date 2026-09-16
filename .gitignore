@@ -1,6 +1,9 @@
 # Build results
 /target/
 
+# Local configuration
+/config.toml
+
 # Sqlite3
 /db
 /db-*
