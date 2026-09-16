@@ -30,11 +30,15 @@ const LOGO: &str = r"
 #[tokio::main]
 async fn main() -> ExitCode {
     println!(
-        "{LOGO}\nhyeonbot\n\n  version  : v{}\n  Rust     : {}\n  Platform : {}\n  Profile  : {}\n",
+        "{LOGO}\nhyeonbot\n\n  version  : v{}\n  Platform : {}-{}\n  Profile  : {}\n",
         env!("CARGO_PKG_VERSION"),
-        env!("HYEONBOT_RUSTC_VERSION"),
-        env!("HYEONBOT_TARGET"),
-        env!("HYEONBOT_PROFILE"),
+        std::env::consts::ARCH,
+        std::env::consts::OS,
+        if cfg!(debug_assertions) {
+            "debug"
+        } else {
+            "release"
+        },
     );
     let _ = std::io::stdout().flush();
 
