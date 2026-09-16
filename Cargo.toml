@@ -1,0 +1,24 @@
+[package]
+name = "hyeonbot"
+version = "2.0.0"
+authors = ["Hyeon Kim <simnalamburt@gmail.com>"]
+description = "Personal IRC bot of Hyeon Kim"
+license = "Apache-2.0 OR MIT"
+repository = "https://github.com/simnalamburt/hyeonbot"
+readme = "README.md"
+edition = "2024"
+
+[dependencies]
+daumdic = "0.9"
+futures = "0.3"
+irc = { version = "1.1", default-features = false, features = ["ctcp", "tls-rust"] }
+regex = "1"
+rusqlite = { version = "0.40", features = ["bundled"] }
+thiserror = "2"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "signal", "time"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[dev-dependencies]
+tempfile = "3"
+tokio = { version = "1", features = ["net", "io-util"] }

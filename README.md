@@ -26,12 +26,22 @@ Personal IRC bot
 
 ### How to run
 ```bash
-gem install hyeonbot && hyeonbot
+cargo install --git https://github.com/simnalamburt/hyeonbot && hyeonbot
 ```
+
+Hyeonbot connects to `irc.ozinger.org:6697` over TLS and remembers the channels
+it has been invited to in a SQLite database named `db` in the working
+directory. Configure it with environment variables:
+
+| Variable             | Default            |
+|----------------------|--------------------|
+| `HYEONBOT_SERVER`    | `irc.ozinger.org`  |
+| `HYEONBOT_PORT`      | `6697`             |
+| `HYEONBOT_LOG_LEVEL` | `debug`            |
 
 Build hyeonbot from source codes:
 ```bash
-gem build hyeonbot.gemspec
+cargo build --release
 ```
 
 &nbsp;

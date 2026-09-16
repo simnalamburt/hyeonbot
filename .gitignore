@@ -1,8 +1,5 @@
-# Ignore dependencies
-/.bundle/lib/
-
 # Build results
-/hyeonbot-*.gem
+/target/
 
 # Sqlite3
 /db
