@@ -1,11 +1,3 @@
-// Copyright 2015-2026 Hyeon Kim
-//
-// Licensed under the Apache License, Version 2.0 <LICENSE-APACHE or
-// http://www.apache.org/licenses/LICENSE-2.0> or the MIT license
-// <LICENSE-MIT or http://opensource.org/licenses/MIT>, at your
-// option. This file may not be copied, modified, or distributed
-// except according to those terms.
-
 //! A port of Cinch's `Target#split_message`, which splits a reply that would exceed the 510-byte
 //! IRC line limit into several messages joined with `...`.
 

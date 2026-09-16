@@ -1,8 +1,8 @@
 [package]
 name = "hyeonbot"
 version = "2.0.0"
-authors = ["Hyeon Kim <simnalamburt@gmail.com>"]
-description = "Personal IRC bot of Hyeon Kim"
+authors = ["Jihyeon Kim <simnalamburt@gmail.com>"]
+description = "Personal IRC bot of Jihyeon Kim"
 license = "Apache-2.0 OR MIT"
 repository = "https://github.com/simnalamburt/hyeonbot"
 readme = "README.md"
