@@ -1,6 +1,6 @@
 Hyeonbot
 ========
-Personall IRC bot
+Personal IRC bot
 
 ```console
 # Daum dictionary
@@ -22,20 +22,19 @@ Personall IRC bot
 <@김젼봇> ㅇㅅ<
 ```
 
-<br>
+&nbsp;
 
-How to run it
---------
+### How to run
 ```bash
 gem install hyeonbot && hyeonbot
 ```
 
-### How to build hyeonbot from source codes
+Build hyeonbot from source codes:
 ```bash
 gem build hyeonbot.gemspec
 ```
 
-<br>
+&nbsp;
 
 --------
 *hyeonbot* is primarily distributed under the terms of both the [MIT license]
